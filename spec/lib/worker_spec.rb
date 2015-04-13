@@ -16,6 +16,7 @@ describe Worker do
     end
 
     it 'returns ack' do
+      expect(worker.work(message)).to eq(:ack)
     end
   end
 
