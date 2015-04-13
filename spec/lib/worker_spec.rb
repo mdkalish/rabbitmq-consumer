@@ -10,9 +10,8 @@ describe Worker do
     after { Currency.destroy_all }
 
     it 'uses publisher to send ack' do
-      Publisher = spy('Publisher')
+      expect(Publisher).to receive(:publish)
       worker.work(message)
-      expect(Publisher).to have_received(:publish)
     end
 
     it 'returns ack' do
