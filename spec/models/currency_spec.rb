@@ -1,21 +1,23 @@
 require 'rails_helper'
-require 'publisher'
 
 describe Currency do
-  let(:currency) { Currency.new(uuid: 'uuid', rates: 'rates') }
-  before { allow(Publisher).to receive(:publish).and_return(currency) }
+  let(:message) { {uuid: 'uuid', rates: 'rates'}.to_json }
 
   context 'when the incoming currency is new' do
     it 'creates new record in db' do
-      expect { Currency.save_new_rates } .to change { Currency.count } .from(0).to(1)
+      expect { Currency.save_new_rates(message) } .to change { Currency.count } .from(0).to(1)
     end
   end
 
   context 'when the incoming currency already exists' do
-    let(:existing_currency) { Currency.save_new_rates }
+    before { Currency.save_new_rates(message) }
 
     it 'does not create new record in db' do
-      expect(Currency.save_new_rates).to eq(existing_currency)
+      expect { Currency.save_new_rates(message) } .not_to change { Currency.count }
+    end
+
+    it 'is invalid' do
+      expect(Currency.new(uuid: message['uuid'])).to be_invalid
     end
   end
 end
