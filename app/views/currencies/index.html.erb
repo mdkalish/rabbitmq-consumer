@@ -1,2 +1,32 @@
-<h1>Currencies#index</h1>
-<p>Find me in app/views/currencies/index.html.erb</p>
+<h1>Consumer Currencies#index</h1>
+<h1>Forex Exchange Rates against USD</h1>
+<div>
+<table>
+  <tr>
+    <th>Fetched at</th>
+    <th>PLN/USD</th>
+    <th>EUR/USD</th>
+  </tr>
+  <% @currencies.each do |c| %>
+  <tr>
+    <td><%= c.created_at%></td>
+    <td><%= c.rates['PLN'] unless c.rates.nil? %></td>
+    <td><%= c.rates['EUR'] unless c.rates.nil? %></td>
+  </tr>
+  <% end %>
+</table>
+</div>
+
+<style>
+  body {
+    width: 500px;
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+  }
+  table, th, tr, td {
+    margin: auto;
+    padding: 10px;
+    border: 1px solid black;
+  }
+</style>

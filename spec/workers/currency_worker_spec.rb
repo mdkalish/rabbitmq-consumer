@@ -20,8 +20,6 @@ describe CurrencyWorker do
 
   context 'when message is invalid' do
     let(:invalid_message) { {id: 1, uuid: ''}.to_json }
-    before { 4.times { worker.work(invalid_message) } }
-    after { Rails.cache.clear('try_count_by_consumer') }
 
     it 'sends reject' do
       expect(worker.work(invalid_message)).to eq(:reject)
