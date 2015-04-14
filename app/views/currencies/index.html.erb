@@ -10,23 +10,9 @@
   <% @currencies.each do |c| %>
   <tr>
     <td><%= c.created_at%></td>
-    <td><%= c.rates['PLN'] unless c.rates.nil? %></td>
-    <td><%= c.rates['EUR'] unless c.rates.nil? %></td>
+    <td><%= c.rates['PLN'] %></td>
+    <td><%= c.rates['EUR'] %></td>
   </tr>
   <% end %>
 </table>
 </div>
-
-<style>
-  body {
-    width: 500px;
-    margin: auto;
-    padding: 50px;
-    text-align: center;
-  }
-  table, th, tr, td {
-    margin: auto;
-    padding: 10px;
-    border: 1px solid black;
-  }
-</style>

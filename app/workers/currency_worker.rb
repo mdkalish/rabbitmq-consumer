@@ -1,3 +1,6 @@
+require 'sneakers'
+require 'publisher'
+
 class CurrencyWorker
   include Sneakers::Worker
   from_queue "currencies.queue_#{ENV['QUEUE_ID']}", durable: true
