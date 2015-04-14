@@ -1,6 +1,3 @@
-require 'json'
-require 'bunny'
-
 class Publisher
   def self.publish(data)
     exchange.publish(data.to_json, persistent: true)

@@ -1,11 +1,10 @@
 require 'rails_helper'
-require 'worker'
+require 'currency_worker'
 
-describe Worker do
-  let(:worker) { Worker.new }
+describe CurrencyWorker do
+  let(:worker) { CurrencyWorker.new }
 
   context 'when message is valid' do
-    let(:worker) { Worker.new }
     let(:message) { {uuid: 'uuid', 'rates': {'AED':3.6, 'PLN': 3.7}}.to_json }
     after { Currency.destroy_all }
 
