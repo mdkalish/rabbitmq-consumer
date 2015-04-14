@@ -1,6 +1,6 @@
 class CurrencyWorker
   include Sneakers::Worker
-  from_queue "currencies.queue_#{ENV['QUEUE_ID']}"
+  from_queue "currencies.queue_#{ENV['QUEUE_ID']}", durable: true
 
   def work(message)
     msg = JSON.parse(message)
